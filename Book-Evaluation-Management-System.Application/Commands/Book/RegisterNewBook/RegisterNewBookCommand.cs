@@ -1,25 +1,20 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Book_Evaluation_Management_System.Core.Enums;
+using MediatR;
 
-namespace Book_Evaluation_Management_System.Core.Entities
+namespace Book_Evaluation_Management_System.Application.Commands.Book.RegisterNewBook
 {
-    public class Book
+    public class RegisterNewBookCommand : IRequest<Unit>
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ISBN { get; set; }
         public string Author { get; set; }
         public string PublishingCompany { get; set; }
-        public GeneroLivroEnum Gender { get; set; }
+        public string Gender { get; set; }
         public int YearOfPublication { get; set; }
         public int QuantityPages { get; set; }
         public DateTime CreationDate { get; set; }
         public decimal AverageGrade { get; set; }
-        public byte[] BookCover { get; set; }
-        public List<Assessment> Assessments { get; set; } = new List<Assessment>();
+        public string BookCover { get; set; }
     }
 }

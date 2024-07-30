@@ -1,14 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using Book_Evaluation_Management_System.Core.Enums;
 
-namespace Book_Evaluation_Management_System.Core.Entities
+namespace Book_Evaluation_Management_System.Core.DTOs
 {
-    public class Book
+    public class BookDTO
     {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string ISBN { get; set; }
@@ -20,6 +15,5 @@ namespace Book_Evaluation_Management_System.Core.Entities
         public DateTime CreationDate { get; set; }
         public decimal AverageGrade { get; set; }
         public byte[] BookCover { get; set; }
-        public List<Assessment> Assessments { get; set; } = new List<Assessment>();
     }
 }
