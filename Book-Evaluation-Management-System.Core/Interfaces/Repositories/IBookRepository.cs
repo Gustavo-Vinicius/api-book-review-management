@@ -1,4 +1,5 @@
 using Book_Evaluation_Management_System.Core.DTOs;
+using Book_Evaluation_Management_System.Core.Models.InputModels;
 
 namespace Book_Evaluation_Management_System.Core.Interfaces.Repositories
 {
@@ -9,6 +10,7 @@ namespace Book_Evaluation_Management_System.Core.Interfaces.Repositories
         Task<IEnumerable<BookDTO>> GetBooks();
         Task EditBookAsync(int id, BookDTO bookDTO);
         Task DeleteBookAsync(int id);
+        Task UploadCoverImageBookAsync(int id, UploadBookCoverInputModel coverImageInputModel);
     }
 
 }

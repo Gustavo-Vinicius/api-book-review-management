@@ -2,6 +2,7 @@ using Book_Evaluation_Management_System.Core.DTOs;
 using Book_Evaluation_Management_System.Core.Entities;
 using Book_Evaluation_Management_System.Core.Enums;
 using Book_Evaluation_Management_System.Core.Interfaces.Repositories;
+using Book_Evaluation_Management_System.Core.Models.InputModels;
 
 namespace Book_Evaluation_Management_System.Infrastructure.Persistence.Repositories
 {
@@ -130,6 +131,22 @@ namespace Book_Evaluation_Management_System.Infrastructure.Persistence.Repositor
 
             byte[] imageBytes = File.ReadAllBytes(imagePath);
             return Convert.ToBase64String(imageBytes);
+        }
+
+        public async Task UploadCoverImageBookAsync(int id, UploadBookCoverInputModel coverImageInputModel)
+        {
+            var book = await _unityOfWork.Books.GetByIdAsync(id);
+
+            using (var memoryStream = new MemoryStream())
+            {
+                await coverImageInputModel.CoverImage.CopyToAsync(memoryStream);
+                book.BookCover = memoryStream.ToArray();
+            }
+
+            _unityOfWork.Books.Update(book);
+
+            await _unityOfWork.CompleteAsync();
+
         }
     }
 }

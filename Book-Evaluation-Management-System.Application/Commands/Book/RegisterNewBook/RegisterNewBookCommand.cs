@@ -1,4 +1,3 @@
-using Book_Evaluation_Management_System.Core.Enums;
 using MediatR;
 
 namespace Book_Evaluation_Management_System.Application.Commands.Book.RegisterNewBook

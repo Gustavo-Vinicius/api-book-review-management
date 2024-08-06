@@ -10,6 +10,8 @@ namespace Book_Evaluation_Management_System.API.Configuration
             services.AddScoped<IUnityOfWork, UnityOfWork>();
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddScoped<IBookRepository, BookRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IReviewsRepository, ReviewsRepository>();
         }
     }
 }

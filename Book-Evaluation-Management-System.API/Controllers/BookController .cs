@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Book_Evaluation_Management_System.Application.Commands.Book.DeleteBook;
 using Book_Evaluation_Management_System.Application.Commands.Book.EditBook;
 using Book_Evaluation_Management_System.Application.Commands.Book.RegisterNewBook;
+using Book_Evaluation_Management_System.Application.Commands.Book.UploadCoverImageBook;
 using Book_Evaluation_Management_System.Application.Queries.Book.GetBookById;
 using Book_Evaluation_Management_System.Application.Queries.Book.GetBooks;
 using MediatR;
@@ -40,6 +37,14 @@ namespace Book_Evaluation_Management_System.API.Controllers
 
         [HttpPost("register-new-book")]
         public async Task<IActionResult> RegisterNewBookAsync([FromBody] RegisterNewBookCommand command)
+        {
+            await _mediator.Send(command);
+
+            return NoContent();
+        }
+
+        [HttpPost("upload-book-cover")]
+        public async Task<IActionResult> UploadCoverImage(UploadCoverImageBookCommand command)
         {
             await _mediator.Send(command);
 
