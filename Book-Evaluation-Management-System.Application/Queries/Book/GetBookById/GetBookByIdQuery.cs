@@ -9,6 +9,11 @@ namespace Book_Evaluation_Management_System.Application.Queries.Book.GetBookById
 {
     public class GetBookByIdQuery : IRequest<BookDTO>
     {
+        public GetBookByIdQuery(int id)
+        {
+            Id = id;
+        }
+
         public int Id { get; set; }
     }
 }

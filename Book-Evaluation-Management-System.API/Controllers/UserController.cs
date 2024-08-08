@@ -19,7 +19,10 @@ namespace Book_Evaluation_Management_System.API.Controllers
             _mediator = mediator;
         }
 
-
+        /// <summary>
+        /// Retrieves all users.
+        /// </summary>
+        /// <returns>A list of users.</returns>
         [HttpGet("get-users")]
         public async Task<IActionResult> GetUsersAsync()
         {
@@ -28,13 +31,24 @@ namespace Book_Evaluation_Management_System.API.Controllers
             return Ok(users);
         }
 
-        [HttpGet("get-user-by-id")]
-        public async Task<IActionResult> GetUserByIdAsync([FromQuery] GetBookByIdQuery query)
+        /// <summary>
+        /// Retrieves a user by their ID.
+        /// </summary>
+        /// <param name="Id">Query containing the user ID.</param>
+        /// <returns>The user corresponding to the provided ID.</returns>
+        [HttpGet("get-user-by-id/{id}")]
+        public async Task<IActionResult> GetUserByIdAsync(int Id)
         {
-            var user = await _mediator.Send(query);
+            var userQuery = new GetBookByIdQuery(Id);    
+            var user = await _mediator.Send(userQuery);
             return Ok(user);
         }
 
+        /// <summary>
+        /// Registers a new user.
+        /// </summary>
+        /// <param name="command">Command containing the new user data.</param>
+        /// <returns>A success status with no content.</returns>
         [HttpPost("register-new-user")]
         public async Task<IActionResult> RegisterNewBookAsync([FromBody] RegisterNewUserCommand command)
         {
@@ -43,6 +57,11 @@ namespace Book_Evaluation_Management_System.API.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Edits an existing user.
+        /// </summary>
+        /// <param name="command">Command containing the updated user data.</param>
+        /// <returns>A success status with no content.</returns>
         [HttpPut("edit-user")]
         public async Task<IActionResult> EditBookAsync([FromBody] EditUserCommand command)
         {
@@ -50,6 +69,11 @@ namespace Book_Evaluation_Management_System.API.Controllers
             return NoContent();
         }
 
+         /// <summary>
+        /// Deletes a user.
+        /// </summary>
+        /// <param name="command">Command containing the ID of the user to be deleted.</param>
+        /// <returns>A success status with no content.</returns>
         [HttpDelete("delete-user")]
         public async Task<IActionResult> DeleteBookAsync([FromQuery] DeleteUserCommand command)
         {

@@ -15,7 +15,7 @@ builder.Services.AddDependencyInjection();
 
 builder.Services.AddMiddlewaresConfiguration();
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerConfiguration();
 
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(GetBooksQuery).Assembly));
 

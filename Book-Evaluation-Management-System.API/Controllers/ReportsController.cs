@@ -15,6 +15,11 @@ namespace Book_Evaluation_Management_System.API.Controllers
             _mediator = mediator;
         }
 
+        /// <summary>
+        /// Retrieves a report of books read in a specific year.
+        /// </summary>
+        /// <param name="year">The year to filter the books read.</param>
+        /// <returns>A list of books read in the specified year.</returns>
         [HttpGet("books-read-in-year/{year}")]
         public async Task<IActionResult> GetBooksReadInYear(int year)
         {
