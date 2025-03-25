@@ -1,8 +1,4 @@
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
-using System;
 using System.Net;
-using System.Threading.Tasks;
 
 public class ExceptionHandlingMiddleware
 {
@@ -14,6 +10,7 @@ public class ExceptionHandlingMiddleware
         _next = next;
         _logger = logger;
     }
+
 
     public async Task InvokeAsync(HttpContext httpContext)
     {
